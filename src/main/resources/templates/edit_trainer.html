@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Edit Trainer</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="shortcut icon" type="image/jpg" href="/favico/favicon.ico"/>
+
+</head>
+<body>
+
+<header th:insert="fragments/header.html :: header"></header>
+
+<div class="col-md-12" align="center">
+    <h1 class="text-center ml-50">Edit Trainer</h1>
+</div>
+<div class="col-md-12" align="center">
+    <form action="#" th:action="@{/save}" th:object="${trainer}"
+          method="post">
+
+        <div class="form-group col-md-6">
+            <label for="id">Id</label>
+            <input type="text" class="form-control" th:field="*{id}" id="id" readonly="readonly"/>
+        </div>
+        <ul>
+            <li th:each="err : ${#fields.errors('id')}" th:text="${err}"/>
+        </ul>
+
+        <div class="form-group col-md-6">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" th:field="*{firstName}" required id="firstName"/>
+        </div>
+        <ul>
+            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+        </ul>
+        <div class="form-group col-md-6">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" th:field="*{lastName}" required id="lastName"/>
+        </div>
+        <ul>
+            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"/>
+        </ul>
+        <div class="form-group col-md-6">
+            <label for="salary">Salary</label>
+            <input type="number" class="form-control" th:field="*{salary}" required id="salary"/>
+        </div>
+        <ul>
+            <li th:each="err : ${#fields.errors('salary')}" th:text="${err}"/>
+        </ul>
+        <div class="form-group col-md-6">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" class="form-control" th:field="*{dateOfBirth}" required id="dateOfBirth"/>
+        </div>
+        <ul>
+            <li th:each="err : ${#fields.errors('dateOfBirth')}" th:text="${err}"/>
+        </ul>
+        <button class="btn btn-danger" type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

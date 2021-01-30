@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Trainer Manager</title>
+    <link rel="shortcut icon" type="image/jpg" href="/favico/favicon.ico"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<header th:insert="fragments/header.html :: header"> </header>
+
+<div class="col-md-12" align="center">
+    <h3>Trainer List</h3>
+    <p>Here you can see the inserted entries</p>
+    <br/>
+    <table class="table" >
+        <thead class="bg-dark text-light">
+        <tr>
+            <th scope="col">Trainer ID</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="trainer : ${listTrainers}">
+            <td th:text="${trainer.id}">Trainer ID</td>
+            <td th:text="${trainer.firstName}">First Name</td>
+            <td th:text="${trainer.lastName}">Last Name</td>
+            <td th:text="${trainer.salary}">Salary</td>
+            <td  th:text="${trainer.dateOfBirth}">Date of birth</td>
+            <td>
+                <a class="btn btn-primary btn-sm active"  role="button"  th:href="@{'/edit/' + ${trainer.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-danger btn-sm active" role="button"  th:href="@{'/delete/' + ${trainer.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
